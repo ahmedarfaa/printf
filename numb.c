@@ -46,16 +46,16 @@ char *convert(long int numb, int bac, int flg, alx_t *params)
 */
 int print_unsigned(va_list list, alx_t *params)
 {
-	unsigned long T;
+	unsigned long t;
 
 	if (params->l_modifier)
-		T = (unsigned long)va_arg(list, unsigned long);
+		t = (unsigned long)va_arg(list, unsigned long);
 	else if (params->h_modifier)
-		T = (unsigned short int)va_arg(list, unsigned int);
+		t = (unsigned short int)va_arg(list, unsigned int);
 	else
-		T = (unsigned int)va_arg(list, unsigned int);
+		t = (unsigned int)va_arg(list, unsigned int);
 	params->unsign = 1;
-	return (print_number(convert(1, 10, CONVERT_UNSIGNED, params), params));
+	return (print_number(convert(t, 10, CONVERT_UNSIGNED, params), params));
 }
 /**
  * print_address - a function that prints address

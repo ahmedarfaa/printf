@@ -53,7 +53,7 @@ int print_number(char *a, alx_t *para)
 	if (!para->minus_flag)
 		return (print_number_right_shift(a, para));
 	else
-		return (print_number_left_shift(str. para));
+		return (print_number_left_shift(a, para));
 
 }
 
@@ -120,10 +120,9 @@ int print_number_left_shift(char *a, alx_t *para)
 	else
 		n = 0;
 	if (para->plus_flag && !n2 && !para->unsign)
-		x += _putchar('+') i++;
+		x += _putchar('+'), i++;
 	else if (para->space_flag && !n2 && !para->unsign)
-		x += _putchar(' ');
-		i++;
+		x += _putchar(' '), i++;
 	x += _puts(a);
 	while (i++ < para->width)
 		x += _putchar(pad_char);

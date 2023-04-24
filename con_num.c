@@ -10,24 +10,24 @@
 int print_hex(va_list a, alx_t *para)
 {
 	unsigned long l;
-	char *a;
+	char *s;
 	int i = 0;
 
 	if (para->l_modifier)
 		l = (unsigned long)va_arg(a, unsigned long);
-	else if (para->h->modifier)
+	else if (para->h_modifier)
 		l = (unsigned short int)va_arg(a, unsigned int);
 	else
 		l = (unsigned int)va_arg(a, unsigned int);
 
-	a = convert(1, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, para);
+	s = convert(l, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, para);
 	if (para->hashtag_flag && l)
 	{
-		*--a = 'x';
-		*--a = '0';
+		*--s = 'x';
+		*--s = '0';
 	}
 	para->unsign = 1;
-	return (i += print_number(a, para));
+	return (i += print_number(s, para));
 }
 
 /**
@@ -39,26 +39,26 @@ int print_hex(va_list a, alx_t *para)
 
 int print_HEX(va_list a, alx_t *para)
 {
-	char *a;
+	char *s;
 	int i = 0;
 	unsigned long l;
 
 
 	if (para->l_modifier)
 		l = (unsigned long)va_arg(a, unsigned long);
-	else if (para->h->modifier)
+	else if (para->h_modifier)
 		l = (unsigned short int)va_arg(a, unsigned int);
 	else
 		l = (unsigned int)va_arg(a, unsigned int);
 
-	a = convert(1, 16, CONVERT_UNSIGNED, para);
+	s = convert(l, 16, CONVERT_UNSIGNED, para);
 	if (para->hashtag_flag && l)
 	{
-		*--a = 'X';
-		*--a = '0';
+		*--s = 'X';
+		*--s = '0';
 	}
 	para->unsign = 1;
-	return (i += print_number(a, para));
+	return (i += print_number(s, para));
 }
 
 /**
@@ -68,24 +68,43 @@ int print_HEX(va_list a, alx_t *para)
  * Return: bytes
  */
 
-int print_octal(va_list a, alx_t para)
+int print_octal(va_list a, alx_t *para)
 {
 	int i = 0;
-	char *a;
+	char *s;
 	unsigned long l;
 
 	if (para->l_modifier)
 		l = (unsigned long)va_arg(a, unsigned long);
-	else if (para->h->modifier)
+	else if (para->h_modifier)
 		l = (unsigned short int)va_arg(a, unsigned int);
 	else
 		l = (unsigned int)va_arg(a, unsigned int);
 
-	a = convert(1, 8, CONVERT_UNSIGNED, para);
+	s = convert(l, 8, CONVERT_UNSIGNED, para);
 	if (para->hashtag_flag && l)
 	{
-		*--a = '0';
+		*--s = '0';
 	}
 	para->unsign = 1;
-	return (i += print_number(a, para));
+	return (i += print_number(s, para));
+}
+
+/**
+ * print_binary - E
+ * @a: ..
+ * @para: ..
+ * Return: int.
+ */
+
+int print_binary(va_list a, alx_t *para)
+{
+	unsigned int x = va_arg(a, unsigned int);
+		char *s = convert(x, 2, CONVERT_UNSIGNED, para);
+	int i = 0;
+
+	if (para->hashtag_flag && x)
+		*--s = '0';
+	para->unsign = 1;
+	return (i += print_number(s, para));
 }

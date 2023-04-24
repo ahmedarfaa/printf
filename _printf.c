@@ -24,7 +24,7 @@ int _printf(const char *format, ...)
 		return (-1);
 	for (q = (char *)format; *q; q++)
 	{
-		init_params(&params, list)
+		init_params(&params, list);
 		if (*q != '%')
 		{
 		add += _putchar(*q);
@@ -42,7 +42,7 @@ int _printf(const char *format, ...)
 		q++;
 		if (!get_specifier(q))
 		add += print_from_to(fst, q,
-				params.l_modifier || params.h_modifier ? p - 1 : 0);
+				params.l_modifier || params.h_modifier ? q - 1 : 0);
 		else
 			add += get_print_func(q, list, &params);
 	}

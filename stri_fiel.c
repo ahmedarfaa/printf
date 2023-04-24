@@ -17,14 +17,14 @@ char *get_precision(char *q, alx_t *params, va_list ap)
 	q++;
 	if (*q == '.')
 	{
-		x = va_arg(ap, int);
+		a = va_arg(ap, int);
 		q++;
 	}
 	else
 	{
 		while (_isdigit(*q))
-			x = x * 10 + (*q++ - '0');
+			a = a * 10 + (*q++ - '0');
 	}
-	params->precision = x;
+	params->precision = a;
 	return (q);
 }

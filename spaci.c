@@ -20,7 +20,7 @@ int (*get_specifier(char *a))(va_list ap, alx_t *params)
 		{"x", print_hex},
 		{"X", print_HEX},
 		{"p", print_address},
-		{"s", print_s},
+		{"s", print_S},
 		{"r", print_rev},
 		{"R", print_rot13},
 		{NULL, NULL}
@@ -30,7 +30,7 @@ int (*get_specifier(char *a))(va_list ap, alx_t *params)
 
 	while (specifier[x].specifier)
 	{
-		if (*a == specifier[x].specifer[0])
+		if (*a == specifier[x].specifier[0])
 		{
 			return (specifier[x].f);
 		}
@@ -71,19 +71,19 @@ int get_flag(char *a, alx_t *params)
 
 	switch (*a)
 	{
-		case '+';
+		case '+':
 			x = params->plus_flag = 1;
 			break;
-		case ' ';
+		case ' ':
 			x = params->plus_flag = 1;
 			break;
-		case '#';
+		case '#':
 			x = params->plus_flag = 1;
 			break;
-		case '-';
+		case '-':
 			x = params->plus_flag = 1;
 			break;
-		case '0';
+		case '0':
 			x = params->plus_flag = 1;
 			break;
 	}
@@ -115,4 +115,27 @@ char *get_width(char *a, alx_t *params, va_list ap)
 	}
 	params->width = x;
 	return (a);
+}
+
+/**
+ * get_modifier - E
+ * @a: ..
+ * @para: ..
+ * Return: .
+ */
+
+int get_modifier(char *a, alx_t *para)
+{
+	int x = 0;
+
+	switch (*a)
+	{
+		case 'h':
+			x = para->h_modifier = 1;
+			break;
+		case 'l':
+			x = para->l_modifier = 1;
+			break;
+	}
+	return (x);
 }
